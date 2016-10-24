@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  a:
+    image: ryancox/openbfdd:0.5.3
+    command: bfdd-beacon --nofork --tee
+    networks:
+      sandbox:
+        ipv4_address: 192.168.100.2
+  b:
+    image: ryancox/openbfdd:0.5.3
+    command: bfdd-beacon --nofork --tee
+    networks:
+      sandbox:
+        ipv4_address: 192.168.100.3
+networks:
+  sandbox:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 192.168.100.0/24
